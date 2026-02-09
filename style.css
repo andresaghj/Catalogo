@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+.nav{
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 60px;
+  color: white;
+  background: rgba(30,55,104,0.7);
+  width: 70px;
+  height: 70px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  border-radius: 50%;
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.nav:hover{
+  background: #10c762;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev{ left: 20px; }
+.next{ right: 20px; }
+
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg, #3c41ad, #10c762);
+  overflow:hidden;
+}
+
+/* 📘 LIBRO RESPONSIVE */
+.flipbook{
+  width: 95vw;
+  height: calc(95vw * 0.45);   /* relación horizontal */
+  max-width: 1280px;
+  max-height: 600px;
+  position: relative;
+  perspective: 2500px;
+}
+.flipbook.turning{
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,0.35));
+}
+
+/* 📄 TODAS LAS PÁGINAS */
+.hard{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  position:relative;
+  background:#1E3768;
+}
+
+/* 🖼️ IMÁGENES */
+.hard img{
+  width:100%;
+  height:100%;
+  object-fit: contain;
+  display:block;
+  background:#1E3768;
+}
+
+/* 📝 TEXTO PORTADA / CONTRAPORTADA */
+.titulo{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,0.45);
+  color:white;
+  text-align:center;
+  padding: clamp(20px, 4vw, 60px);
+}
+
+.titulo h1,
+.titulo h2{
+  font-size: clamp(22px, 4vw, 42px);
+  margin-bottom:10px;
+}
+
+.titulo span{
+  font-size: clamp(14px, 2vw, 18px);
+  letter-spacing:2px;
+}
+
+/* 🎨 DIFERENCIA VISUAL */
+.portada .titulo{
+  background:rgba(30, 55, 104, 0.75);
+}
+
+.contraportada .titulo{
+  background:rgba(16, 199, 98, 0.65);
+}
+@media (max-width: 768px){
+  body{
+    overflow: hidden;
+  }
+
+  .flipbook{
+    margin: auto;
+  }
+
+  .nav{
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+  }
+}
+
+/* 📱 MÓVIL */
+@media (max-width: 768px){
+  .flipbook{
+    width: 95vw;
+    height: calc(95vw * 1.2); /* libro vertical */
+  }
+}
