@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo Econstrucciones</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- JS LOCALES -->
+  <script src="jquery.js"></script>
+  <script src="turn.js"></script>
+</head>
+<div class="nav prev">‹</div>
+<div class="nav next">›</div>
+
+<body>
+
+<div class="flipbook">
+
+  <!-- PORTADA -->
+  <div class="hard portada">
+    <img src="imagen/1.jpg" alt="Portada">
+  </div>
+
+  <!-- PÁGINAS -->
+  <div class="hard"><img src="imagen/2.jpg"></div>
+  <div class="hard"><img src="imagen/3.jpg"></div>
+  <div class="hard"><img src="imagen/4.jpg"></div>
+  <div class="hard"><img src="imagen/5.jpg"></div>
+  <div class="hard"><img src="imagen/6.jpg"></div>
+  <div class="hard"><img src="imagen/7.jpg"></div>
+  <div class="hard"><img src="imagen/9.jpg"></div>
+  <div class="hard"><img src="imagen/8.jpg"></div>
+  <div class="hard"><img src="imagen/10.jpg"></div>
+  <div class="hard"><img src="imagen/11.jpg"></div>
+  <div class="hard"><img src="imagen/12.jpg"></div>
+  <div class="hard"><img src="imagen/13.jpg"></div>
+  <div class="hard"><img src="imagen/14.jpg"></div>
+  <div class="hard"><img src="imagen/15.jpg"></div>
+  <div class="hard"><img src="imagen/16.jpg"></div>
+  <div class="hard"><img src="imagen/17.jpg"></div>
+  <div class="hard"><img src="imagen/18.jpg"></div>
+  <div class="hard"><img src="imagen/19.jpg"></div>
+  <div class="hard"><img src="imagen/20.jpg"></div>
+  <div class="hard"><img src="imagen/21.jpg"></div>
+  <div class="hard"><img src="imagen/22.jpg"></div>
+  <div class="hard"><img src="imagen/23.jpg"></div>
+  <div class="hard"><img src="imagen/24.jpg"></div>
+  <div class="hard"><img src="imagen/26.jpg"></div>
+  <div class="hard"><img src="imagen/25.jpg"></div>
+  <div class="hard"><img src="imagen/27.jpg"></div>
+  <div class="hard"><img src="imagen/29.jpg"></div>
+  <div class="hard"><img src="imagen/28.jpg"></div>
+  <div class="hard"><img src="imagen/31.jpg"></div>
+  <div class="hard"><img src="imagen/30.jpg"></div>
+  <div class="hard"><img src="imagen/32.jpg"></div>
+  <div class="hard"><img src="imagen/33.jpg"></div>
+
+  <!-- CONTRAPORTADA -->
+  <div class="hard contraportada">
+    <img src="imagen/35.jpg" alt="Contraportada">
+  </div>
+
+</div>
+
+<script>
+  function resizeBook() {
+    const maxWidth = 1600;
+    const screenWidth = window.innerWidth * 0.95;
+
+    const w = Math.min(screenWidth, maxWidth);
+    const h = w; // libro cuadrado
+
+    if ($('.flipbook').data('turn')) {
+      $('.flipbook').turn('size', w, h);
+    }
+  }
+
+  $('.flipbook').turn({
+    width: 1200,
+    height: 1200,
+    autoCenter: true,
+    display: 'double',
+
+    // 🎬 ANIMACIÓN PREMIUM
+    gradients: true,          // sombras realistas
+    acceleration: true,       // GPU
+    elevation: 180,           // profundidad 3D
+    duration: 1200,           // 🔥 flip MÁS LENTO (ms)
+
+    when: {
+      turning: function () {
+        $(this).addClass('turning');
+      },
+      turned: function () {
+        $(this).removeClass('turning');
+      }
+    }
+    
+  });
+
+  $(window).on('resize', resizeBook);
+  resizeBook();
+
+  // ⌨️ Teclado
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') $('.flipbook').turn('next');
+    if (e.key === 'ArrowLeft') $('.flipbook').turn('previous');
+  });
+</script>
+<script>
+  document.querySelector('.next').onclick = () => $('.flipbook').turn('next');
+  document.querySelector('.prev').onclick = () => $('.flipbook').turn('previous');
+  let startX = 0;
+
+  document.querySelector('.flipbook').addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  });
+
+  document.querySelector('.flipbook').addEventListener('touchend', e => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) $('.flipbook').turn('next');
+    if (endX - startX > 50) $('.flipbook').turn('previous');
+  });
+</script>
+
+
+
+
+
+
+</body>
+</html>
